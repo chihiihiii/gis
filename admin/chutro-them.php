@@ -8,6 +8,33 @@ include 'header.php';
         <div class="block-header">
             <h2>QUẢN LÝ CHỦ TRỌ</h2>
         </div>
+        <?php
+        if (isset($_SESSION['success'])) :
+
+        ?>
+            <div class="alert bg-green alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <?= $_SESSION['success'] ?>
+            </div>
+
+        <?php
+        endif;
+        ?>
+
+        <?php
+        if (isset($_SESSION['error'])) :
+        ?>
+            <div class="alert bg-red alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <?= $_SESSION['error'] ?>
+            </div>
+
+        <?php
+        endif;
+        ?>
+
+
+
 
         <!-- Content -->
         <div class="row clearfix">
@@ -52,7 +79,7 @@ include 'header.php';
                             </div>
 
                             <div class="form-group">
-                                <input type="radio" name="gioitinh" id="nam" value="1" class="with-gap">
+                                <input type="radio" name="gioitinh" id="nam" value="1" class="with-gap" required>
                                 <label for="nam">Nam</label>
 
                                 <input type="radio" name="gioitinh" id="nu" value="0" class="with-gap">
