@@ -138,7 +138,6 @@ if (!isset($_SESSION['username'])) {
                         </ul>
                     </li>
                     <li>
-
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">widgets</i>
                             <span>Khu trọ</span>
@@ -149,6 +148,20 @@ if (!isset($_SESSION['username'])) {
                             </li>
                             <li>
                                 <a href="khutro-them.php">Thêm</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">widgets</i>
+                            <span>Loại phòng</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="loaiphong.php">Danh sách</a>
+                            </li>
+                            <li>
+                                <a href="loaiphong-them.php">Thêm</a>
                             </li>
                         </ul>
                     </li>

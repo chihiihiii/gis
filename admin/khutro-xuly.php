@@ -17,11 +17,11 @@ if (isset($_POST['them'])) {
 
     if ($conn->query($sql) === TRUE) {
         $_SESSION['success'] = 'Thêm khu trọ thành công';
-        header('location: khutro.php');
     } else {
         $_SESSION['error'] = 'Thêm khu trọ thất bại';
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        // echo "Error: " . $sql . "<br>" . $conn->error;
     }
+    header('location: khutro.php');
 } elseif (isset($_POST['sua'])) {
 
     $idkt = trim($_POST['idkt']);
@@ -35,9 +35,9 @@ if (isset($_POST['them'])) {
 
     if ($conn->query($sql) === TRUE) {
         $_SESSION['success'] = 'Cập nhật khu trọ thành công';
-        header('location: khutro.php');
     } else {
         $_SESSION['error'] = 'Cập nhật khu trọ thất bại';
-        echo "Error updating record: " . $conn->error;
+        // echo "Error updating record: " . $conn->error;
     }
+    header('location: khutro.php');
 }

@@ -6,7 +6,7 @@ include 'header.php';
 <section class="content">
     <div class="container-fluid">
         <div class="block-header">
-            <h2>QUẢN LÝ KHU TRỌ</h2>
+            <h2>QUẢN LÝ LOẠI PHÒNG</h2>
         </div>
         <?php
         if (isset($_SESSION['success'])) :
@@ -34,11 +34,10 @@ include 'header.php';
         ?>
 
         <?php
-        $sql = "SELECT * FROM khutro";
+        $sql = "SELECT * FROM loaiphong";
         $result = $conn->query($sql);
 
-        $sql1 = "SELECT * FROM chutro";
-        $result1 = $conn->query($sql1);
+
         ?>
 
 
@@ -48,7 +47,7 @@ include 'header.php';
                 <div class="card">
                     <div class="header">
                         <h2>
-                            DANH SÁCH KHU TRỌ
+                            DANH SÁCH LOẠI PHÒNG
                         </h2>
                     </div>
                     <div class="body">
@@ -58,36 +57,36 @@ include 'header.php';
                                     <tr>
                                         <th>ID</th>
                                         <th>Tên</th>
-                                        <th>Địa chỉ</th>
-                                        <th>Longitude</th>
-                                        <th>Latitude</th>
-                                        <th>Chủ trọ</th>
+                                        <th>Số người</th>
+                                        <th>Diện tích (m2)</th>
+                                        <th>Giá (VNĐ)</th>
+                                        <th>Khu trọ</th>
                                         <th></th>
+
                                     </tr>
                                 </thead>
 
                                 <tbody>
 
                                     <?php
-                                    if ($result->num_rows > 0 && $result1->num_rows > 0) :
+                                    if ($result->num_rows > 0) :
 
                                         while ($row = $result->fetch_assoc()) :
-
-                                            $idct = $row['idct'];
-                                            $sql1 = "SELECT * FROM chutro WHERE idct=$idct";
+                                            $idkt = $row['idkt'];
+                                            $sql1 = "SELECT * FROM khutro WHERE idkt=$idkt";
                                             $result1 = $conn->query($sql1);
                                             if ($result1->num_rows > 0) :
                                                 $row1 = $result1->fetch_assoc();
                                     ?>
                                                 <tr>
-                                                    <td><?= $row['idkt'] ?></td>
-                                                    <td><?= $row['tenkt'] ?></td>
-                                                    <td><?= $row['diachi'] ?></td>
-                                                    <td><?= $row['longitude'] ?></td>
-                                                    <td><?= $row['latitude'] ?></td>
-                                                    <td><?= $row1['tenct'] ?></td>
+                                                    <td><?= $row['idlp'] ?></td>
+                                                    <td><?= $row['tenlp'] ?></td>
+                                                    <td><?= $row['songuoi'] ?></td>
+                                                    <td><?= number_format($row['dientich'])  ?></td>
+                                                    <td><?= number_format($row['gia']) ?></td>
+                                                    <td><?= $row1['tenkt'] ?></td>
                                                     <td>
-                                                        <a href="khutro-sua.php?idkt=<?= $row['idkt'] ?>" type="button" class="btn btn-info waves-effect btn-block">
+                                                        <a href="loaiphong-sua.php?idlp=<?= $row['idlp'] ?>" type="button" class="btn btn-info waves-effect btn-block">
                                                             <i class="material-icons">edit</i>
                                                         </a>
                                                     </td>

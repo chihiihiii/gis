@@ -15,11 +15,11 @@ if (isset($_POST['them'])) {
 
     if ($conn->query($sql) === TRUE) {
         $_SESSION['success'] = 'Thêm chủ trọ thành công';
-        header('location: chutro.php');
     } else {
         $_SESSION['error'] = 'Thêm chủ trọ thất bại';
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        // echo "Error: " . $sql . "<br>" . $conn->error;
     }
+    header('location: chutro.php');
 } elseif (isset($_POST['sua'])) {
     $idct = trim($_POST['idct']);
     $tenct = trim($_POST['tenct']);
@@ -30,9 +30,9 @@ if (isset($_POST['them'])) {
 
     if ($conn->query($sql) === TRUE) {
         $_SESSION['success'] = 'Cập nhật chủ trọ thành công';
-        header('location: chutro.php');
     } else {
         $_SESSION['error'] = 'Cập nhật chủ trọ thất bại';
-        echo "Error updating record: " . $conn->error;
+        // echo "Error updating record: " . $conn->error;
     }
+    header('location: chutro.php');
 }

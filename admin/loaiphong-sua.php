@@ -1,6 +1,6 @@
 <?php
-if (!isset($_GET['idkt']) || empty($_GET['idkt'])) {
-    header('location: khutro.php');
+if (!isset($_GET['idlp']) || empty($_GET['idlp'])) {
+    header('location: loaiphong.php');
 }
 include 'header.php';
 ?>
@@ -9,7 +9,7 @@ include 'header.php';
 <section class="content">
     <div class="container-fluid">
         <div class="block-header">
-            <h2>QUẢN LÝ KHU TRỌ</h2>
+            <h2>QUẢN LÝ LOẠI PHÒNG</h2>
         </div>
         <?php
         if (isset($_SESSION['success'])) :
@@ -38,11 +38,11 @@ include 'header.php';
 
         <?php
 
-        $idkt = $_GET['idkt'];
-        $sql = "SELECT * FROM khutro WHERE idkt=$idkt";
+        $idlp = $_GET['idlp'];
+        $sql = "SELECT * FROM loaiphong WHERE idlp=$idlp";
         $result = $conn->query($sql);
 
-        $sql1 = "SELECT * FROM chutro";
+        $sql1 = "SELECT * FROM khutro";
         $result1 = $conn->query($sql1);
 
 
@@ -59,19 +59,19 @@ include 'header.php';
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
-                            <h2>SỬA KHU TRỌ</h2>
+                            <h2>SỬA LOẠI PHÒNG</h2>
 
                         </div>
                         <div class="body">
-                            <form id="form_validation" method="POST" action="khutro-xuly.php">
-                                <input type="hidden" name="idkt" value="<?= $row['idkt'] ?>" id="">
+                            <form id="form_validation" method="POST" action="loaiphong-xuly.php">
+                                <input type="hidden" name="idlp" value="<?= $row['idlp'] ?>" id="">
                                 <div class="form-group form-float">
-                                    <select class="form-control show-tick" name="idct" required>
-                                        <option value="" disabled selected>Chọn chủ trọ</option>
+                                    <select class="form-control show-tick" name="idkt" required>
+                                        <option value="" disabled selected>Chọn khu trọ</option>
                                         <?php
                                         while ($row1 = $result1->fetch_assoc()) :
                                         ?>
-                                            <option value="<?= $row1['idct'] ?>" <?= ($row['idct'] == $row1['idct']) ? 'selected' : '' ?>><?= $row1['tenct'] ?></option>
+                                            <option value="<?= $row1['idkt'] ?>" <?= ($row['idkt'] == $row1['idkt']) ? 'selected' : '' ?>><?= $row1['tenkt'] ?></option>
 
                                         <?php
                                         endwhile;
@@ -80,38 +80,31 @@ include 'header.php';
                                 </div>
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input type="text" class="form-control" name="tenkt" id="tenkt" value="<?= $row['tenkt'] ?>" required>
-                                        <label class="form-label">Tên khu trọ</label>
+                                        <input type="text" class="form-control" name="tenlp" id="tenlp" value="<?= $row['tenlp'] ?>" required>
+                                        <label class="form-label">Tên loại phòng</label>
                                     </div>
                                 </div>
 
 
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input type="text" class="form-control" name="diachi" id="diachi" value="<?= $row['diachi'] ?>" required>
-                                        <label class="form-label">Địa chỉ</label>
+                                        <input type="number" class="form-control" name="songuoi" id="songuoi" value="<?= $row['songuoi'] ?>" required>
+                                        <label class="form-label">Số người</label>
+                                    </div>
+                                </div>
+                                <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <input type="number" class="form-control" name="dientich" id="dientich" value="<?= $row['dientich'] ?>" required>
+                                        <label class="form-label">Diện tích (m2)</label>
+                                    </div>
+                                </div>
+                                <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <input type="number" class="form-control" name="gia" id="gia" value="<?= $row['gia'] ?>" required>
+                                        <label class="form-label">Giá (VNĐ)</label>
                                     </div>
                                 </div>
 
-                                <div class="row clearfix">
-                                    <div class="col-sm-6">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input type="text" class="form-control" name="longitude" id="longitude" value="<?= $row['longitude'] ?>" required>
-                                                <label class="form-label">Longitude</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input type="text" class="form-control" name="latitude" id="latitude" value="<?= $row['latitude'] ?>" required>
-                                                <label class="form-label">Latitude</label>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
 
                                 <button class="btn btn-info waves-effect" type="submit" name="sua">LƯU</button>
                                 <button class="btn btn-default waves-effect" type="reset">LÀM LẠI</button>
