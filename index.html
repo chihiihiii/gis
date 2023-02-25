@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý nhà trọ</title>
+    <link rel="stylesheet" href="src/leaflet.css">
+    <link rel="stylesheet" href="src/css/bootstrap.css">
+    <script src="src/leaflet-src.js"></script>
+    <script src="src/jquery-3.6.3.min.js"></script>
+    <style>
+        #map-div{
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <div id="side-bar" class="col-md-3"></div>
+    <div id="map-div" class="col-md-9"></div>
+    <script>
+        var mymap = L.map('map-div', {center:[10.045162, 105.746857], zoom: 13});
+        var lyrOSM = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
+        mymap.addLayer(lyrOSM);
+    </script>
+</body>
+</html>

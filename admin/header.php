@@ -15,8 +15,7 @@ session_start();
     <!-- <link rel="icon" href="favicon.ico" type="image/x-icon"> -->
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet"
-        type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
 
     <!-- Bootstrap Core Css -->
@@ -27,6 +26,9 @@ session_start();
 
     <!-- Animation Css -->
     <link href="assets/plugins/animate-css/animate.css" rel="stylesheet" />
+
+    <!-- Bootstrap Select Css -->
+    <link href="assets/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
 
     <!-- Custom Css -->
     <link href="assets/css/style.css" rel="stylesheet">
@@ -73,8 +75,7 @@ session_start();
     <nav class="navbar">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#navbar-collapse" aria-expanded="false"></a>
+                <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
                 <a href="javascript:void(0);" class="bars"></a>
                 <a class="navbar-brand" href="index.php">QUẢN LÝ NHÀ TRỌ</a>
             </div>
@@ -94,8 +95,7 @@ session_start();
                     <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">John Doe</div>
                     <div class="email">john.doe@example.com</div>
                     <div class="btn-group user-helper-dropdown">
-                        <i class="material-icons" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="true">keyboard_arrow_down</i>
+                        <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
                             <li><a href="javascript:void(0);"><i class="material-icons">person</i>Tài khoản</a></li>
                             <li><a href="javascript:void(0);"><i class="material-icons">input</i>Đăng xuất</a></li>
@@ -124,11 +124,24 @@ session_start();
                             <li>
                                 <a href="chutro.php">Danh sách</a>
                             </li>
-
                             <li>
                                 <a href="chutro-them.php">Thêm</a>
                             </li>
+                        </ul>
+                    </li>
+                    <li>
 
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">widgets</i>
+                            <span>Khu trọ</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="khutro.php">Danh sách</a>
+                            </li>
+                            <li>
+                                <a href="khutro-them.php">Thêm</a>
+                            </li>
                         </ul>
                     </li>
 

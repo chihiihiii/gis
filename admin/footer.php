@@ -22,6 +22,9 @@
 <script src="assets/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
 
 
+<!-- Select Plugin Js -->
+<script src="assets/plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
 
 <!-- Custom Js -->
 <script src="assets/js/admin.js"></script>
