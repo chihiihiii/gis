@@ -1,7 +1,9 @@
 <?php
 require_once '../connect.php';
 session_start();
-
+if (!isset($_SESSION['username'])) {
+    header('location: dangnhap.php');
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -80,6 +82,12 @@ session_start();
                 <a class="navbar-brand" href="index.php">QUẢN LÝ NHÀ TRỌ</a>
             </div>
 
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                <li><a href="dangxuat.php"><i class="material-icons">input</i></a></li>
+
+                </ul>
+            </div>
         </div>
     </nav>
     <!-- #Top Bar -->
@@ -97,8 +105,8 @@ session_start();
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
-                            <li><a href="javascript:void(0);"><i class="material-icons">person</i>Tài khoản</a></li>
-                            <li><a href="javascript:void(0);"><i class="material-icons">input</i>Đăng xuất</a></li>
+                            <li><a href="taikhoan.php"><i class="material-icons">person</i>Tài khoản</a></li>
+                            <li><a href="dangxuat.php"><i class="material-icons">input</i>Đăng xuất</a></li>
                         </ul>
                     </div>
                 </div>

@@ -8,7 +8,7 @@
 <script src="assets/plugins/bootstrap-select/js/bootstrap-select.js"></script>
 
 <!-- Slimscroll Plugin Js -->
-<script src="assets/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+<!-- <script src="assets/plugins/jquery-slimscroll/jquery.slimscroll.js"></script> -->
 
 <!-- Waves Effect Plugin Js -->
 <script src="assets/plugins/node-waves/waves.js"></script>

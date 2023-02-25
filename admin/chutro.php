@@ -47,7 +47,7 @@ include 'header.php';
                 <div class="card">
                     <div class="header">
                         <h2>
-                            DANH SÁCH NHÀ TRỌ
+                            DANH SÁCH CHỦ TRỌ
                         </h2>
                     </div>
                     <div class="body">
