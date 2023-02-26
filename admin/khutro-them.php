@@ -58,6 +58,7 @@ include 'header.php';
                                 <?php
                                 if ($_SESSION['role'] == 1) :
                                 ?>
+                                <label for="idct">Chủ trọ</label>
                                     <div class="form-group form-float">
                                         <select class="form-control show-tick" name="idct" required>
                                             <option value="" disabled selected>Chọn chủ trọ</option>

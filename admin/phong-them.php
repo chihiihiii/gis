@@ -69,12 +69,12 @@ include 'header.php';
                                 </div>
                                 <label for="idlp">Loại phòng</label>
                                 <div class="form-group form-float">
-                                    <select class="form-control show-tick" name="idlp" id="idlp" required>
-                                        <option value="" disabled selected>Chọn loại phòng</option>
-                                        <option value=""></option>
+                                    <select class="form-control" name="idlp" id="idlp" required>
+                                        <!-- <option value="" disabled selected>Chọn loại phòng</option> -->
+
                                     </select>
                                 </div>
-                                <p id="idlp"></p>
+                             
                                 <div class="form-group form-float">
                                     <div class="form-line">
                                         <input type="text" class="form-control" name="tenlp" id="tenlp" required>
@@ -157,8 +157,10 @@ include 'footer.php';
                     // // var data_=JSON.parse(data);
                     for (var i = 0; i < db.length; i++) {
                         console.log(db[i].idlp);
+                        console.log(db[i].tenlp);
+                        $('#idlp').append(new Option(db[i].tenlp, db[i].idlp));
                     }
-                    $('#idlp').val(db)
+                    // $('#idlp').val(db)
 
                 },
                 error: function(xhr, status, error) {
