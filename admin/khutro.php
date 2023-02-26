@@ -33,15 +33,6 @@ include 'header.php';
         endif;
         ?>
 
-        <?php
-        $sql = "SELECT * FROM khutro";
-        $result = $conn->query($sql);
-
-        $sql1 = "SELECT * FROM chutro";
-        $result1 = $conn->query($sql1);
-        ?>
-
-
         <!-- Content -->
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -52,40 +43,99 @@ include 'header.php';
                         </h2>
                     </div>
                     <div class="body">
-                        <div class="table-responsive">
-                            <table class="table table-striped table-hover js-basic-example dataTable">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Tên</th>
-                                        <th>Địa chỉ</th>
-                                        <th>Longitude</th>
-                                        <th>Latitude</th>
-                                        <th>Chủ trọ</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
 
-                                <tbody>
 
-                                    <?php
-                                    if ($result->num_rows > 0 && $result1->num_rows > 0) :
+                        <?php
+                        if ($_SESSION['role'] == 1) :
+                            $sql = "SELECT * FROM khutro";
+                            $result = $conn->query($sql);
+                        ?>
 
-                                        while ($row = $result->fetch_assoc()) :
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover js-basic-example dataTable">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Tên</th>
+                                            <th>Địa chỉ</th>
+                                            <th>Longitude</th>
+                                            <th>Latitude</th>
+                                            <th>Chủ trọ</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
 
-                                            $idct = $row['idct'];
-                                            $sql1 = "SELECT * FROM chutro WHERE idct=$idct";
-                                            $result1 = $conn->query($sql1);
-                                            if ($result1->num_rows > 0) :
-                                                $row1 = $result1->fetch_assoc();
-                                    ?>
+                                    <tbody>
+
+                                        <?php
+                                        if ($result->num_rows > 0) :
+
+                                            while ($row = $result->fetch_assoc()) :
+
+                                                $idct = $row['idct'];
+                                                $sql1 = "SELECT * FROM chutro WHERE idct=$idct";
+                                                $result1 = $conn->query($sql1);
+                                                if ($result1->num_rows > 0) :
+                                                    $row1 = $result1->fetch_assoc();
+                                        ?>
+                                                    <tr>
+                                                        <td><?= $row['idkt'] ?></td>
+                                                        <td><?= $row['tenkt'] ?></td>
+                                                        <td><?= $row['diachi'] ?></td>
+                                                        <td><?= $row['longitude'] ?></td>
+                                                        <td><?= $row['latitude'] ?></td>
+                                                        <td><?= $row1['tenct'] ?></td>
+                                                        <td>
+                                                            <a href="khutro-sua.php?idkt=<?= $row['idkt'] ?>" type="button" class="btn btn-info waves-effect btn-block">
+                                                                <i class="material-icons">edit</i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+
+                                        <?php
+                                                endif;
+                                            endwhile;
+                                        endif;
+                                        ?>
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+
+                        <?php
+                        else :
+                            $id = $_SESSION['id'];
+                            $sql = "SELECT * FROM khutro WHERE idct=$id";
+                            $result = $conn->query($sql);
+                        ?>
+
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover js-basic-example dataTable">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Tên</th>
+                                            <th>Địa chỉ</th>
+                                            <th>Longitude</th>
+                                            <th>Latitude</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                        <?php
+                                        if ($result->num_rows > 0 ) :
+
+                                            while ($row = $result->fetch_assoc()) :
+                                        ?>
                                                 <tr>
                                                     <td><?= $row['idkt'] ?></td>
                                                     <td><?= $row['tenkt'] ?></td>
                                                     <td><?= $row['diachi'] ?></td>
                                                     <td><?= $row['longitude'] ?></td>
                                                     <td><?= $row['latitude'] ?></td>
-                                                    <td><?= $row1['tenct'] ?></td>
                                                     <td>
                                                         <a href="khutro-sua.php?idkt=<?= $row['idkt'] ?>" type="button" class="btn btn-info waves-effect btn-block">
                                                             <i class="material-icons">edit</i>
@@ -93,16 +143,20 @@ include 'header.php';
                                                     </td>
                                                 </tr>
 
-                                    <?php
-                                            endif;
-                                        endwhile;
-                                    endif;
-                                    ?>
+                                        <?php
 
-                                </tbody>
+                                            endwhile;
+                                        endif;
+                                        ?>
 
-                            </table>
-                        </div>
+                                    </tbody>
+
+                                </table>
+                            </div>
+
+                        <?php
+                        endif
+                        ?>
                     </div>
                 </div>
             </div>

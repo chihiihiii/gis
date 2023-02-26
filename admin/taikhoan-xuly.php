@@ -31,17 +31,38 @@ if (isset($_POST['dangky'])) {
     $username = trim($_POST['username']);
     $password = md5(trim($_POST['password']));
 
-    $sql = "SELECT * FROM users WHERE username='$username' AND password='$password'";
+    $sql = "SELECT * FROM chutro WHERE username='$username' AND password='$password'";
     $result = $conn->query($sql);
-    var_dump($result);
+    // var_dump($result);
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         $_SESSION['username'] = $row['username'];
+        $_SESSION['id'] = $row['idct'];
+        $_SESSION['role'] = 0;
         $_SESSION['success'] = 'Đăng nhập thành công';
         header('location: index.php');
     } else {
         $_SESSION['error'] = 'Thông tin đăng nhập không chính xác';
         header('location: dangnhap.php');
+        // echo 'hi';
+    }
+} elseif (isset($_POST['dangnhap_admin'])) {
+    $username = trim($_POST['username']);
+    $password = md5(trim($_POST['password']));
+
+    $sql = "SELECT * FROM admin WHERE username='$username' AND password='$password'";
+    $result = $conn->query($sql);
+    // var_dump($result);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $_SESSION['username'] = $row['username'];
+        $_SESSION['id'] = $row['id'];
+        $_SESSION['role'] = 1;
+        $_SESSION['success'] = 'Đăng nhập thành công';
+        header('location: index.php');
+    } else {
+        $_SESSION['error'] = 'Thông tin đăng nhập không chính xác';
+        header('location: dangnhap-admin.php');
         // echo 'hi';
     }
 }

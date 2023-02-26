@@ -42,9 +42,15 @@ include 'header.php';
         $sql = "SELECT * FROM khutro WHERE idkt=$idkt";
         $result = $conn->query($sql);
 
-        $sql1 = "SELECT * FROM chutro";
-        $result1 = $conn->query($sql1);
 
+        if ($_SESSION['role'] == 1) {
+            $sql1 = "SELECT * FROM chutro";
+            $result1 = $conn->query($sql1);
+        } else {
+            $idct = $_SESSION['id'];
+            $sql1 = "SELECT * FROM chutro WHERE idct=$idct";
+            $result1 = $conn->query($sql1);
+        }
 
 
         if ($result->num_rows > 0 && $result1->num_rows > 0) :
@@ -65,19 +71,32 @@ include 'header.php';
                         <div class="body">
                             <form id="form_validation" method="POST" action="khutro-xuly.php">
                                 <input type="hidden" name="idkt" value="<?= $row['idkt'] ?>" id="">
-                                <div class="form-group form-float">
-                                    <select class="form-control show-tick" name="idct" required>
-                                        <option value="" disabled selected>Chọn chủ trọ</option>
-                                        <?php
-                                        while ($row1 = $result1->fetch_assoc()) :
-                                        ?>
-                                            <option value="<?= $row1['idct'] ?>" <?= ($row['idct'] == $row1['idct']) ? 'selected' : '' ?>><?= $row1['tenct'] ?></option>
+                                <?php
+                                if ($_SESSION['role'] == 1) :
+                                ?>
 
-                                        <?php
-                                        endwhile;
-                                        ?>
-                                    </select>
-                                </div>
+                                    <div class="form-group form-float">
+                                        <select class="form-control show-tick" name="idct" required>
+                                            <option value="" disabled selected>Chọn chủ trọ</option>
+                                            <?php
+                                            while ($row1 = $result1->fetch_assoc()) :
+                                            ?>
+                                                <option value="<?= $row1['idct'] ?>" <?= ($row['idct'] == $row1['idct']) ? 'selected' : '' ?>><?= $row1['tenct'] ?></option>
+
+                                            <?php
+                                            endwhile;
+                                            ?>
+                                        </select>
+                                    </div>
+
+                                <?php
+                                else :
+                                ?>
+                                    <input type="hidden" name="idct" id="" value="<?= $idct ?>">
+
+                                <?php
+                                endif;
+                                ?>
                                 <div class="form-group form-float">
                                     <div class="form-line">
                                         <input type="text" class="form-control" name="tenkt" id="tenkt" value="<?= $row['tenkt'] ?>" required>

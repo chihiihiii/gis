@@ -29,10 +29,10 @@ session_start();
     <link href="assets/css/style.css" rel="stylesheet">
 </head>
 
-<body class="signup-page">
+<body class="login-page">
 
 
-    <div class="signup-box">
+    <div class="login-box">
         <div class="logo">
             <a href="javascript:void(0);">QUẢN LÝ NHÀ TRỌ</a>
             <!-- <small></small> -->
@@ -65,8 +65,8 @@ session_start();
 
         <div class="card">
             <div class="body">
-                <form id="sign_up" method="POST" action="taikhoan-xuly.php">
-                    <div class="msg">ĐĂNG KÝ</div>
+                <form id="sign_in" method="POST" action="taikhoan-xuly.php">
+                    <div class="msg">ĐĂNG NHẬP ADMIN</div>
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">person</i>
@@ -77,32 +77,16 @@ session_start();
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon">
-                            <i class="material-icons">email</i>
-                        </span>
-                        <div class="form-line">
-                            <input type="email" class="form-control" name="email" placeholder="Email" required>
-                        </div>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
                             <i class="material-icons">lock</i>
                         </span>
                         <div class="form-line">
-                            <input type="password" class="form-control" name="password" minlength="6" placeholder="Mật khẩu" required>
+                            <input type="password" class="form-control" name="password" placeholder="Mật khẩu" required>
                         </div>
                     </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">lock</i>
-                        </span>
-                        <div class="form-line">
-                            <input type="password" class="form-control" name="confirm" minlength="6" placeholder="Nhập lại mật khẩu" required>
-                        </div>
-                    </div>
-                    <button class="btn btn-block btn-lg bg-pink waves-effect" type="submit" name="dangky">ĐĂNG KÝ</button>
+                    <button class="btn btn-block btn-lg bg-pink waves-effect" type="submit" name="dangnhap_admin">ĐĂNG NHẬP</button>
 
                     <div class="m-t-25 m-b--5 align-center">
-                        <a href="dangnhap.php">Đã có tài khoản ?</a>
+                        <a href="dangnhap.php">Vai trò chủ trọ ?</a>
                     </div>
                 </form>
             </div>
@@ -123,7 +107,7 @@ session_start();
 
     <!-- Custom Js -->
     <script src="assets/js/admin.js"></script>
-    <script src="assets/js/pages/examples/sign-up.js"></script>
+    <script src="assets/js/pages/examples/sign-in.js"></script>
 
     <?php
     unset($_SESSION['success']);

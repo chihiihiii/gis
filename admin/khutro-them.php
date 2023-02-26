@@ -34,9 +34,14 @@ include 'header.php';
         ?>
 
         <?php
-        $sql = "SELECT * FROM chutro";
-        $result = $conn->query($sql);
-
+        if ($_SESSION['role'] == 1) {
+            $sql = "SELECT * FROM chutro";
+            $result = $conn->query($sql);
+        } else {
+            $idct = $_SESSION['id'];
+            $sql = "SELECT * FROM chutro WHERE idct=$idct";
+            $result = $conn->query($sql);
+        }
         if ($result->num_rows > 0) :
 
         ?>
@@ -50,19 +55,31 @@ include 'header.php';
                         </div>
                         <div class="body">
                             <form id="form_validation" method="POST" action="khutro-xuly.php">
-                                <div class="form-group form-float">
-                                    <select class="form-control show-tick" name="idct" required>
-                                        <option value="" disabled selected>Chọn chủ trọ</option>
-                                        <?php
-                                        while ($row = $result->fetch_assoc()) :
-                                        ?>
-                                            <option value="<?= $row['idct'] ?>"><?= $row['tenct'] ?></option>
+                                <?php
+                                if ($_SESSION['role'] == 1) :
+                                ?>
+                                    <div class="form-group form-float">
+                                        <select class="form-control show-tick" name="idct" required>
+                                            <option value="" disabled selected>Chọn chủ trọ</option>
+                                            <?php
+                                            while ($row = $result->fetch_assoc()) :
+                                            ?>
+                                                <option value="<?= $row['idct'] ?>"><?= $row['tenct'] ?></option>
 
-                                        <?php
-                                        endwhile;
-                                        ?>
-                                    </select>
-                                </div>
+                                            <?php
+                                            endwhile;
+                                            ?>
+                                        </select>
+                                    </div>
+
+                                <?php
+                                else :
+                                ?>
+                                    <input type="hidden" name="idct" id="" value="<?= $idct ?>">
+
+                                <?php
+                                endif;
+                                ?>
                                 <div class="form-group form-float">
                                     <div class="form-line">
                                         <input type="text" class="form-control" name="tenkt" id="tenkt" required>

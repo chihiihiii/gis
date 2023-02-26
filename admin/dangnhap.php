@@ -86,7 +86,10 @@ session_start();
                     <button class="btn btn-block btn-lg bg-pink waves-effect" type="submit" name="dangnhap">ĐĂNG NHẬP</button>
 
                     <div class="m-t-25 m-b--5 align-center">
-                        <a href="dangky.php">Chưa có tài khoản?</a>
+                        <a href="dangky.php">Chưa có tài khoản ?</a>
+                    </div>
+                    <div class="m-t-25 m-b--5 align-center">
+                        <a href="dangnhap-admin.php">Vai trò admin ?</a>
                     </div>
                 </form>
             </div>

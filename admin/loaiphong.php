@@ -33,12 +33,6 @@ include 'header.php';
         endif;
         ?>
 
-        <?php
-        $sql = "SELECT * FROM loaiphong";
-        $result = $conn->query($sql);
-
-
-        ?>
 
 
         <!-- Content -->
@@ -51,6 +45,18 @@ include 'header.php';
                         </h2>
                     </div>
                     <div class="body">
+
+                        <?php
+                        if ($_SESSION['role'] == 1) {
+                            $sql = "SELECT * FROM loaiphong";
+                            $result = $conn->query($sql);
+                        } else {
+                            $idct = $_SESSION['id'];
+                            $sql = "SELECT * FROM loaiphong WHERE idct=$idct";
+                            $result = $conn->query($sql);
+                        }
+
+                        ?>
                         <div class="table-responsive">
                             <table class="table table-striped table-hover js-basic-example dataTable">
                                 <thead>
@@ -70,9 +76,9 @@ include 'header.php';
 
                                     <?php
                                     if ($result->num_rows > 0) :
-                        
+
                                         while ($row = $result->fetch_assoc()) :
-                                           
+
                                             $idkt = $row['idkt'];
                                             $sql1 = "SELECT * FROM khutro WHERE idkt=$idkt";
                                             $result1 = $conn->query($sql1);
@@ -97,13 +103,16 @@ include 'header.php';
                                             endif;
                                         endwhile;
                                     endif;
-                                 
+
                                     ?>
 
                                 </tbody>
 
                             </table>
                         </div>
+
+
+
                     </div>
                 </div>
             </div>

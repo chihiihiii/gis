@@ -42,9 +42,15 @@ include 'header.php';
         $sql = "SELECT * FROM loaiphong WHERE idlp=$idlp";
         $result = $conn->query($sql);
 
-        $sql1 = "SELECT * FROM khutro";
-        $result1 = $conn->query($sql1);
-
+     
+        if ($_SESSION['role'] == 1) {
+            $sql1 = "SELECT * FROM khutro";
+            $result1 = $conn->query($sql1);
+        } else {
+            $idct = $_SESSION['id'];
+            $sql1 = "SELECT * FROM khutro WHERE idct=$idct";
+            $result1 = $conn->query($sql1);
+        }
 
 
         if ($result->num_rows > 0 && $result1->num_rows > 0) :

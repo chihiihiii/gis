@@ -34,8 +34,15 @@ include 'header.php';
         ?>
 
         <?php
-        $sql = "SELECT * FROM khutro";
-        $result = $conn->query($sql);
+        if ($_SESSION['role'] == 1) {
+            $sql = "SELECT * FROM khutro";
+            $result = $conn->query($sql);
+        } else {
+            $idct = $_SESSION['id'];
+            $sql = "SELECT * FROM khutro WHERE idct=$idct";
+            $result = $conn->query($sql);
+        }
+
 
         if ($result->num_rows > 0) :
 
@@ -50,7 +57,9 @@ include 'header.php';
                         </div>
                         <div class="body">
                             <form id="form_validation" method="POST" action="loaiphong-xuly.php">
+                            
                                 <div class="form-group form-float">
+
                                     <select class="form-control show-tick" name="idkt" required>
                                         <option value="" disabled selected>Chọn khu trọ</option>
                                         <?php

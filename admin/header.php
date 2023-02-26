@@ -84,7 +84,7 @@ if (!isset($_SESSION['username'])) {
 
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                <li><a href="dangxuat.php"><i class="material-icons">input</i></a></li>
+                    <li><a href="dangxuat.php"><i class="material-icons">input</i></a></li>
 
                 </ul>
             </div>
@@ -122,21 +122,27 @@ if (!isset($_SESSION['username'])) {
                             <span>Trang chủ</span>
                         </a>
                     </li>
-                    <li>
+                    <?php
+                    if ($_SESSION['role'] == 1) :
+                    ?>
+                        <li>
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <i class="material-icons">widgets</i>
+                                <span>Chủ trọ</span>
+                            </a>
+                            <ul class="ml-menu">
+                                <li>
+                                    <a href="chutro.php">Danh sách</a>
+                                </li>
+                                <li>
+                                    <a href="chutro-them.php">Thêm</a>
+                                </li>
+                            </ul>
+                        </li>
 
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">widgets</i>
-                            <span>Chủ trọ</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li>
-                                <a href="chutro.php">Danh sách</a>
-                            </li>
-                            <li>
-                                <a href="chutro-them.php">Thêm</a>
-                            </li>
-                        </ul>
-                    </li>
+                    <?php
+                    endif;
+                    ?>
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">widgets</i>
