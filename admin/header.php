@@ -165,6 +165,20 @@ if (!isset($_SESSION['username'])) {
                             </li>
                         </ul>
                     </li>
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">widgets</i>
+                            <span>Phòng</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="phong.php">Danh sách</a>
+                            </li>
+                            <li>
+                                <a href="phong-them.php">Thêm</a>
+                            </li>
+                        </ul>
+                    </li>
 
                 </ul>
             </div>

@@ -6,7 +6,7 @@ include 'header.php';
 <section class="content">
     <div class="container-fluid">
         <div class="block-header">
-            <h2>QUẢN LÝ LOẠI PHÒNG</h2>
+            <h2>QUẢN LÝ PHÒNG</h2>
         </div>
         <?php
         if (isset($_SESSION['success'])) :
@@ -34,7 +34,7 @@ include 'header.php';
         ?>
 
         <?php
-        $sql = "SELECT * FROM loaiphong";
+        $sql = "SELECT * FROM phong";
         $result = $conn->query($sql);
 
 
@@ -47,7 +47,7 @@ include 'header.php';
                 <div class="card">
                     <div class="header">
                         <h2>
-                            DANH SÁCH LOẠI PHÒNG
+                            DANH SÁCH PHÒNG
                         </h2>
                     </div>
                     <div class="body">
@@ -56,11 +56,10 @@ include 'header.php';
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Tên</th>
-                                        <th>Số người</th>
-                                        <th>Diện tích (m2)</th>
-                                        <th>Giá (VNĐ)</th>
+                                        <th>STT</th>
+                                        <th>Tình trạng</th>
                                         <th>Khu trọ</th>
+                                        <th>Loại phòng</th>
                                         <th></th>
 
                                     </tr>
@@ -70,24 +69,27 @@ include 'header.php';
 
                                     <?php
                                     if ($result->num_rows > 0) :
-                        
+
                                         while ($row = $result->fetch_assoc()) :
-                                           
                                             $idkt = $row['idkt'];
+                                            $idlp = $row['idlp'];
                                             $sql1 = "SELECT * FROM khutro WHERE idkt=$idkt";
+                                            $sql2 = "SELECT * FROM loaiphong WHERE idlp=$idlp";
                                             $result1 = $conn->query($sql1);
-                                            if ($result1->num_rows > 0) :
+                                            $result2 = $conn->query($sql2);
+                                            if ($result1->num_rows > 0 && $result2->num_rows > 0) :
                                                 $row1 = $result1->fetch_assoc();
+                                                $row2 = $result2->fetch_assoc();
                                     ?>
                                                 <tr>
-                                                    <td><?= $row['idlp'] ?></td>
-                                                    <td><?= $row['tenlp'] ?></td>
-                                                    <td><?= $row['songuoi'] ?></td>
-                                                    <td><?= number_format($row['dientich'])  ?></td>
-                                                    <td><?= number_format($row['gia']) ?></td>
+                                                    <td><?= $row['idp'] ?></td>
+                                                    <td><?= $row['stt'] ?></td>
+                                                    <td><?= ($row['tinhtrang'] == 1) ? 'Trống' : 'Hết' ?></td>
+
                                                     <td><?= $row1['tenkt'] ?></td>
+                                                    <td><?= $row2['tenlp'] ?></td>
                                                     <td>
-                                                        <a href="loaiphong-sua.php?idlp=<?= $row['idlp'] ?>" type="button" class="btn btn-info waves-effect btn-block">
+                                                        <a href="phong-sua.php?idp=<?= $row['idp'] ?>" type="button" class="btn btn-info waves-effect btn-block">
                                                             <i class="material-icons">edit</i>
                                                         </a>
                                                     </td>
@@ -97,7 +99,6 @@ include 'header.php';
                                             endif;
                                         endwhile;
                                     endif;
-                                 
                                     ?>
 
                                 </tbody>
